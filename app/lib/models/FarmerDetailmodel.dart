@@ -1,4 +1,3 @@
-
 class Farmer {
   String firstname;
   String lastname;
