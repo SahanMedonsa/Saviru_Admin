@@ -39,7 +39,7 @@ class harvestdetails extends StatelessWidget {
           DetailRow(detail: 'Season Havest (kg)', fdetail: honetime),
           DetailRow(detail: 'Season ', fdetail: season),
           DetailRow(detail: 'Price for 1kg', fdetail: price1kg),
-          DetailRow(detail: 'Profit for 1kg', fdetail: price1kg),
+          DetailRow(detail: 'Profit for 1kg', fdetail: profit1kg),
         ],
       ),
     );

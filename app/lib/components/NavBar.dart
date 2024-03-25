@@ -13,7 +13,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   final List<Widget> _pages = [
-    FarmerDetailsPAge(),
+    FarmerDetailsPage(),
     const FarmerPage(),
     Container(
       color: Colors.amber,
