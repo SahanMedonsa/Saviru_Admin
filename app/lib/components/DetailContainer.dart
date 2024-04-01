@@ -23,7 +23,7 @@ class _DetailContainerState extends State<DetailContainer> {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-      height: 70,
+      height: 80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: widget.Ccolor,

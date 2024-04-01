@@ -46,14 +46,17 @@ class _FarmerDetailsPageState extends State<FarmerDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        DetailContainer(
-            Cicon: Icons.person,
-            ctext: "Total Grow Area",
-            count: fieldSum.toString(),
-            Ccolor: ColorPalette.Jungle_Green)
-      ],
+    return Container(
+      color: Colors.amber,
+      child: Row(
+        children: [
+          DetailContainer(
+              Cicon: Icons.person,
+              ctext: "Total Grow Area",
+              count: fieldSum.toString(),
+              Ccolor: ColorPalette.Jungle_Green)
+        ],
+      ),
     );
   }
 }
