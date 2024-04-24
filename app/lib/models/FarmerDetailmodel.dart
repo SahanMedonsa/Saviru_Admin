@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Farmer {
   String firstname;
   String lastname;
@@ -17,24 +19,26 @@ class Farmer {
   int price1kg;
   int profit1kg;
 
-  Farmer({
-    required this.firstname,
-    required this.lastname,
-    required this.username,
-    required this.age,
-    required this.district,
-    required this.address,
-    required this.nic,
-    required this.email,
-    required this.phonenum,
-    required this.passsword,
-    required this.vegetable,
-    required this.garea,
-    required this.honetime,
-    required this.season,
-    required this.price1kg,
-    required this.profit1kg,
-  });
+  List<String>? dailyCrops;
+
+  Farmer(
+      {required this.firstname,
+      required this.lastname,
+      required this.username,
+      required this.age,
+      required this.district,
+      required this.address,
+      required this.nic,
+      required this.email,
+      required this.phonenum,
+      required this.passsword,
+      required this.vegetable,
+      required this.garea,
+      required this.honetime,
+      required this.season,
+      required this.price1kg,
+      required this.profit1kg,
+      this.dailyCrops});
 
   factory Farmer.fromJson(Map<String, dynamic> json) {
     return Farmer(
@@ -54,6 +58,9 @@ class Farmer {
       season: json['season'] as String? ?? '',
       price1kg: json['priceP1kg'] as int? ?? 0,
       profit1kg: json['profite1kg'] as int? ?? 0,
+      dailyCrops: json['dailyCrops'] != null
+          ? List<String>.from(json['dailyCrops'])
+          : null,
     );
   }
 
@@ -92,6 +99,7 @@ class Farmer {
       season: season ?? this.season,
       price1kg: price1kg ?? this.price1kg,
       profit1kg: profit1kg ?? this.profit1kg,
+      dailyCrops: dailyCrops ?? this.dailyCrops,
     );
   }
 
@@ -112,7 +120,16 @@ class Farmer {
       'harvestOneTime': honetime,
       'season': season,
       'priceP1kg': price1kg,
-      'profite1kg': profit1kg
+      'profite1kg': profit1kg,
+      'dailyCrops': dailyCrops
+    };
+  }
+
+  Map<String, dynamic> dailyCrop(String amount, String type) {
+    var amountDouble = double.parse(amount);
+    return {
+      'amount': amountDouble,
+      'type': type,
     };
   }
 }

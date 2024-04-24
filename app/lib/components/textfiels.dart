@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Textfields extends StatelessWidget {
   final String label;
-  final Icon icon;
+  final Icon? icon;
   final TextEditingController tcontroller;
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
@@ -11,7 +11,7 @@ class Textfields extends StatelessWidget {
     Key? key,
     required this.keyboardType,
     required this.label,
-    required this.icon,
+    this.icon,
     required this.tcontroller,
     this.validator,
   }) : super(key: key); // Pass key to super constructor

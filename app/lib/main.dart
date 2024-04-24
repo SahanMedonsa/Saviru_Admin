@@ -35,6 +35,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        brightness: Brightness.light,
         navigationRailTheme: NavigationRailThemeData(
           backgroundColor: Colors.green.shade600,
           indicatorColor: Colors.green.shade300,
