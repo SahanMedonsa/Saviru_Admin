@@ -6,6 +6,7 @@ import 'package:app/controllers/FarmerControllers.dart';
 import 'package:app/models/FarmerDetailmodel.dart';
 import 'package:app/services/farmer_db_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/instance_manager.dart';
@@ -24,7 +25,101 @@ class _DrawerrState extends State<Drawerr> {
   final FarmerDatabaseServices _farmerDatabaseServices =
       FarmerDatabaseServices();
 
-  String? selectedFarmerId;
+  late Farmer? selectedFarmer;
+  late bool isEditing;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedFarmer =
+        null; // Initialize selectedFarmer as null for new registration
+    isEditing = false; // Set isEditing to false for new registration
+  }
+
+  Future<void> signUp() async {
+    try {
+      // Validate form inputs
+      if (!formKey.currentState!.validate()) {
+        return;
+      }
+
+      // Create or update user based on isEditing flag
+      if (!isEditing) {
+        // Create new user
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: contoller.emailControoler.text.trim(),
+                password: contoller.passwordControoler.text.trim());
+
+        // Add farmer details to Firestore
+        if (userCredential.user != null) {
+          Farmer farmer = Farmer(
+            firstname: contoller.firstnameControoler.text,
+            lastname: contoller.lastnameControoler.text,
+            username: contoller.usernameControoler.text,
+            age: int.tryParse(contoller.ageContoller.text) ?? 0,
+            district: contoller.districtControoler.text,
+            address: contoller.addressControoler.text,
+            nic: contoller.nicControoler.text,
+            email: contoller.emailControoler.text,
+            phonenum: int.tryParse(contoller.phonenumController.text) ?? 0,
+            passsword: contoller.passwordControoler.text,
+            vegetable: contoller.vegetableControoler.text,
+            garea: int.tryParse(contoller.gareaController.text) ?? 0,
+            honetime: int.tryParse(contoller.honetimeController.text) ?? 0,
+            season: contoller.seasonControoler.text,
+            price1kg: int.tryParse(contoller.price1kgController.text) ?? 0,
+            profit1kg: int.tryParse(contoller.profit1kgController.text) ?? 0,
+          );
+
+          // ignore: await_only_futures
+          _farmerDatabaseServices.addfarmer(farmer);
+
+          Fluttertoast.showToast(msg: 'User registered successfully!');
+          Navigator.pop(context); // Close the drawer
+        }
+      } else {
+        // Update existing user details
+        if (selectedFarmer != Farmer) {
+          selectedFarmer!.firstname = contoller.firstnameControoler.text;
+          selectedFarmer!.lastname = contoller.lastnameControoler.text;
+          selectedFarmer!.username = contoller.usernameControoler.text;
+          selectedFarmer!.age = int.tryParse(contoller.ageContoller.text) ?? 0;
+          selectedFarmer!.district = contoller.districtControoler.text;
+          selectedFarmer!.address = contoller.addressControoler.text;
+          selectedFarmer!.nic = contoller.nicControoler.text;
+          selectedFarmer!.email = contoller.emailControoler.text;
+          selectedFarmer!.phonenum =
+              int.tryParse(contoller.phonenumController.text) ?? 0;
+          selectedFarmer!.passsword = contoller.passwordControoler.text;
+          selectedFarmer!.vegetable = contoller.vegetableControoler.text;
+          selectedFarmer!.garea =
+              int.tryParse(contoller.gareaController.text) ?? 0;
+          selectedFarmer!.honetime =
+              int.tryParse(contoller.honetimeController.text) ?? 0;
+          selectedFarmer!.season = contoller.seasonControoler.text;
+          selectedFarmer!.price1kg =
+              int.tryParse(contoller.price1kgController.text) ?? 0;
+          selectedFarmer!.profit1kg =
+              int.tryParse(contoller.profit1kgController.text) ?? 0;
+
+          // _farmerDatabaseServices.updatefarmer(!selectedFarmer);
+
+          Fluttertoast.showToast(msg: 'User details updated successfully!');
+          Navigator.pop(context); // Close the drawer
+        }
+      }
+    } catch (e) {
+      print('Error occurred during registration: $e');
+      Fluttertoast.showToast(msg: 'Registration failed. Please try again.');
+    }
+  }
+
+  final formKey = GlobalKey<FormState>();
+
+  // Future addUserDetails() async{
+  //   await FirebaseFirestore.instance.collection('farmer').
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +130,6 @@ class _DrawerrState extends State<Drawerr> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    final formKey = GlobalKey<FormState>();
     return StreamBuilder(
         stream: _farmerDatabaseServices.getfarmers(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -256,94 +350,7 @@ class _DrawerrState extends State<Drawerr> {
                                       //Register button
                                       MaterialButton(
                                         color: ColorPalette.button_color,
-                                        onPressed: () {
-                                          int age = int.tryParse(contoller
-                                                  .ageContoller.text) ??
-                                              0;
-                                          int phonenum = int.tryParse(contoller
-                                                  .phonenumController.text) ??
-                                              0;
-                                          int garea = int.tryParse(contoller
-                                                  .gareaController.text) ??
-                                              0;
-                                          int honetime = int.tryParse(contoller
-                                                  .honetimeController.text) ??
-                                              0;
-                                          int price1kg = int.tryParse(contoller
-                                                  .price1kgController.text) ??
-                                              0;
-                                          int profit1kg = int.tryParse(contoller
-                                                  .profit1kgController.text) ??
-                                              0;
-
-                                          if (selectedFarmerId == null) {
-                                            if (formKey.currentState!
-                                                .validate()) {
-                                              Farmer farmer = Farmer(
-                                                  firstname: contoller
-                                                      .firstnameControoler.text,
-                                                  lastname: contoller
-                                                      .lastnameControoler.text,
-                                                  username: contoller
-                                                      .usernameControoler.text,
-                                                  age: age,
-                                                  district: contoller
-                                                      .districtControoler.text,
-                                                  address: contoller
-                                                      .addressControoler.text,
-                                                  nic: contoller
-                                                      .nicControoler.text,
-                                                  email: contoller
-                                                      .emailControoler.text,
-                                                  phonenum: phonenum,
-                                                  passsword: contoller
-                                                      .passwordControoler.text,
-                                                  vegetable: contoller
-                                                      .vegetableControoler.text,
-                                                  garea: garea,
-                                                  honetime: honetime,
-                                                  season: contoller
-                                                      .seasonControoler.text,
-                                                  price1kg: price1kg,
-                                                  profit1kg: profit1kg);
-
-                                              farmerDatabaseServices
-                                                  .addfarmer(farmer);
-                                              Navigator.pop(context);
-                                            }
-                                          } else {
-                                            Farmer updatedFarmer = Farmer(
-                                                firstname: contoller
-                                                    .firstnameControoler.text,
-                                                lastname: contoller
-                                                    .lastnameControoler.text,
-                                                username: contoller
-                                                    .usernameControoler.text,
-                                                age: age,
-                                                district: contoller
-                                                    .districtControoler.text,
-                                                address: contoller
-                                                    .addressControoler.text,
-                                                nic: contoller
-                                                    .nicControoler.text,
-                                                email: contoller
-                                                    .emailControoler.text,
-                                                phonenum: phonenum,
-                                                passsword: contoller
-                                                    .passwordControoler.text,
-                                                vegetable: contoller
-                                                    .vegetableControoler.text,
-                                                garea: garea,
-                                                honetime: honetime,
-                                                season: contoller
-                                                    .seasonControoler.text,
-                                                price1kg: price1kg,
-                                                profit1kg: profit1kg);
-                                            // farmerDatabaseServices.updatefarmer(
-                                            //     Farmer[index].doc!,
-                                            //     updatedFarmer);
-                                          }
-                                        },
+                                        onPressed: signUp,
                                         child: const Gtext(
                                             text: 'Register',
                                             size: 15,
