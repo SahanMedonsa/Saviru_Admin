@@ -12,7 +12,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/instance_manager.dart';
 
 class Drawerr extends StatefulWidget {
-  const Drawerr({super.key});
+  final Function? onpressed;
+  const Drawerr({super.key, this.onpressed});
 
   @override
   State<Drawerr> createState() => _DrawerrState();
@@ -50,6 +51,11 @@ class _DrawerrState extends State<Drawerr> {
             .createUserWithEmailAndPassword(
                 email: contoller.emailControoler.text.trim(),
                 password: contoller.passwordControoler.text.trim());
+
+        // FirebaseFirestore.instance
+        //     .collection("Farmers")
+        //     .doc(userCredential.user!.email)
+        //     .set('uid': User.uid).;
 
         // Add farmer details to Firestore
         if (userCredential.user != null) {

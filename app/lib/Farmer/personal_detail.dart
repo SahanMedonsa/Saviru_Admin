@@ -14,18 +14,19 @@ class personalDetails extends StatelessWidget {
   final String nic;
   final String email;
   final String phonenum;
+  final String password;
 
-  const personalDetails({
-    super.key,
-    required this.fullname,
-    required this.username,
-    required this.age,
-    required this.district,
-    required this.address,
-    required this.nic,
-    required this.email,
-    required this.phonenum,
-  });
+  const personalDetails(
+      {super.key,
+      required this.fullname,
+      required this.username,
+      required this.age,
+      required this.district,
+      required this.address,
+      required this.nic,
+      required this.email,
+      required this.phonenum,
+      required this.password});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,8 @@ class personalDetails extends StatelessWidget {
           DetailRow(detail: 'Address', fdetail: address),
           DetailRow(detail: 'District ', fdetail: district),
           DetailRow(detail: 'Email ', fdetail: email),
-          DetailRow(detail: 'Phone Number', fdetail: phonenum)
+          DetailRow(detail: 'Phone Number', fdetail: phonenum),
+          DetailRow(detail: 'Password', fdetail: password)
         ],
       ),
     );

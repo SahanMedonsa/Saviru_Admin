@@ -9,10 +9,8 @@ import 'package:app/models/FarmerDetailmodel.dart';
 import 'package:app/pages/FarmerDetails.dart';
 import 'package:app/services/farmer_db_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
@@ -184,7 +182,7 @@ class _FarmerPageState extends State<FarmerPage> {
                                                   fweight: FontWeight.w400),
                                               children: [
                                                 Container(
-                                                  height: 350,
+                                                  height: 400,
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.all(
@@ -204,27 +202,28 @@ class _FarmerPageState extends State<FarmerPage> {
                                                             children: [
                                                               //Personal details
                                                               personalDetails(
-                                                                  fullname: farmer
-                                                                          .firstname +
-                                                                      " " +
-                                                                      farmer
-                                                                          .lastname,
-                                                                  username: farmer
-                                                                      .username,
-                                                                  age: farmer
-                                                                      .age
-                                                                      .toString(),
-                                                                  district: farmer
-                                                                      .district,
-                                                                  address: farmer
-                                                                      .address,
-                                                                  nic: farmer
-                                                                      .nic,
-                                                                  email: farmer
-                                                                      .email,
-                                                                  phonenum: farmer
-                                                                      .phonenum
-                                                                      .toString()),
+                                                                fullname: farmer
+                                                                        .firstname +
+                                                                    " " +
+                                                                    farmer
+                                                                        .lastname,
+                                                                username: farmer
+                                                                    .username,
+                                                                age: farmer.age
+                                                                    .toString(),
+                                                                district: farmer
+                                                                    .district,
+                                                                address: farmer
+                                                                    .address,
+                                                                nic: farmer.nic,
+                                                                email: farmer
+                                                                    .email,
+                                                                phonenum: farmer
+                                                                    .phonenum
+                                                                    .toString(),
+                                                                password: farmer
+                                                                    .passsword,
+                                                              ),
 
                                                               //Harvest Details
                                                               harvestdetails(
@@ -270,93 +269,99 @@ class _FarmerPageState extends State<FarmerPage> {
                                                               IconButton(
                                                                   onPressed:
                                                                       () {
-                                                                    // Retrieve the current farmer ID
-                                                                    String
-                                                                        farmerId =
-                                                                        farmers[index]
-                                                                            .id;
+                                                                    // Set controller values with selected farmer details
+                                                                    contoller
+                                                                            .firstnameControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .firstname;
+                                                                    contoller
+                                                                            .lastnameControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .lastname;
+                                                                    contoller
+                                                                            .usernameControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .username;
+                                                                    contoller
+                                                                            .ageContoller
+                                                                            .text =
+                                                                        farmer
+                                                                            .age
+                                                                            .toString();
+                                                                    contoller
+                                                                            .districtControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .district;
+                                                                    contoller
+                                                                            .addressControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .address;
+                                                                    contoller
+                                                                            .nicControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .nic;
+                                                                    contoller
+                                                                            .emailControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .email;
+                                                                    contoller
+                                                                            .phonenumController
+                                                                            .text =
+                                                                        farmer
+                                                                            .phonenum
+                                                                            .toString();
+                                                                    contoller
+                                                                            .vegetableControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .vegetable;
+                                                                    contoller
+                                                                            .gareaController
+                                                                            .text =
+                                                                        farmer
+                                                                            .garea
+                                                                            .toString();
+                                                                    contoller
+                                                                            .honetimeController
+                                                                            .text =
+                                                                        farmer
+                                                                            .honetime
+                                                                            .toString();
+                                                                    contoller
+                                                                            .seasonControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .season;
+                                                                    contoller
+                                                                            .price1kgController
+                                                                            .text =
+                                                                        farmer
+                                                                            .price1kg
+                                                                            .toString();
+                                                                    contoller
+                                                                            .profit1kgController
+                                                                            .text =
+                                                                        farmer
+                                                                            .profit1kg
+                                                                            .toString();
+                                                                    contoller
+                                                                            .passwordControoler
+                                                                            .text =
+                                                                        farmer
+                                                                            .passsword
+                                                                            .toString();
 
-                                                                    // Create a new Farmer object with updated details from the text controllers
-                                                                    Farmer
-                                                                        updatedFarmer =
-                                                                        Farmer(
-                                                                      firstname: contoller
-                                                                          .firstnameControoler
-                                                                          .text,
-                                                                      lastname: contoller
-                                                                          .lastnameControoler
-                                                                          .text,
-                                                                      username: contoller
-                                                                          .usernameControoler
-                                                                          .text,
-                                                                      age: int.tryParse(contoller
-                                                                              .ageContoller
-                                                                              .text) ??
-                                                                          0,
-                                                                      district: contoller
-                                                                          .districtControoler
-                                                                          .text,
-                                                                      address: contoller
-                                                                          .addressControoler
-                                                                          .text,
-                                                                      nic: contoller
-                                                                          .nicControoler
-                                                                          .text,
-                                                                      email: contoller
-                                                                          .emailControoler
-                                                                          .text,
-                                                                      phonenum:
-                                                                          int.tryParse(contoller.phonenumController.text) ??
-                                                                              0,
-                                                                      passsword: contoller
-                                                                          .passwordControoler
-                                                                          .text,
-                                                                      vegetable: contoller
-                                                                          .vegetableControoler
-                                                                          .text,
-                                                                      garea: int.tryParse(contoller
-                                                                              .gareaController
-                                                                              .text) ??
-                                                                          0,
-                                                                      honetime:
-                                                                          int.tryParse(contoller.honetimeController.text) ??
-                                                                              0,
-                                                                      season: contoller
-                                                                          .seasonControoler
-                                                                          .text,
-                                                                      price1kg:
-                                                                          int.tryParse(contoller.price1kgController.text) ??
-                                                                              0,
-                                                                      profit1kg:
-                                                                          int.tryParse(contoller.profit1kgController.text) ??
-                                                                              0,
-                                                                    );
-
-                                                                    try {
-                                                                      Scaffold.of(
-                                                                              context)
-                                                                          .openDrawer();
-                                                                      // Update the farmer details in Firestore
-                                                                      _farmerDatabaseServices.updatefarmer(
-                                                                          farmerId,
-                                                                          updatedFarmer);
-
-                                                                      // Show a success message
-                                                                      Fluttertoast
-                                                                          .showToast(
-                                                                              msg: 'User details updated successfully!');
-
-                                                                      // Close the drawer
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                    } catch (e) {
-                                                                      // Handle any errors that occur during the update
-                                                                      print(
-                                                                          'Error updating user details: $e');
-                                                                      Fluttertoast
-                                                                          .showToast(
-                                                                              msg: 'Failed to update user details. Please try again.');
-                                                                    }
+                                                                    // Open end drawer
+                                                                    Scaffold.of(
+                                                                            context)
+                                                                        .openEndDrawer();
                                                                   },
                                                                   icon:
                                                                       const Icon(

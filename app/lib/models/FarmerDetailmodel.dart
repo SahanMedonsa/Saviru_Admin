@@ -19,26 +19,46 @@ class Farmer {
   int price1kg;
   int profit1kg;
 
-  List<String>? dailyCrops;
+  Farmer({
+    required this.firstname,
+    required this.lastname,
+    required this.username,
+    required this.age,
+    required this.district,
+    required this.address,
+    required this.nic,
+    required this.email,
+    required this.phonenum,
+    required this.passsword,
+    required this.vegetable,
+    required this.garea,
+    required this.honetime,
+    required this.season,
+    required this.price1kg,
+    required this.profit1kg,
+  });
 
-  Farmer(
-      {required this.firstname,
-      required this.lastname,
-      required this.username,
-      required this.age,
-      required this.district,
-      required this.address,
-      required this.nic,
-      required this.email,
-      required this.phonenum,
-      required this.passsword,
-      required this.vegetable,
-      required this.garea,
-      required this.honetime,
-      required this.season,
-      required this.price1kg,
-      required this.profit1kg,
-      this.dailyCrops});
+  // Method to convert Farmer object to a Map
+  Map<String, dynamic> toMap() {
+    return {
+      'firstname': firstname,
+      'lastname': lastname,
+      'username': username,
+      'age': age,
+      'district': district,
+      'address': address,
+      'nic': nic,
+      'mail': email,
+      'phonenum': phonenum,
+      'password': passsword, // Note: Corrected typo in the field name
+      'vegetable': vegetable,
+      'garea': garea,
+      'harvestOneTime': honetime,
+      'season': season,
+      'priceP1kg': price1kg,
+      'profite1kg': profit1kg,
+    };
+  }
 
   factory Farmer.fromJson(Map<String, dynamic> json) {
     return Farmer(
@@ -58,9 +78,6 @@ class Farmer {
       season: json['season'] as String? ?? '',
       price1kg: json['priceP1kg'] as int? ?? 0,
       profit1kg: json['profite1kg'] as int? ?? 0,
-      dailyCrops: json['dailyCrops'] != null
-          ? List<String>.from(json['dailyCrops'])
-          : null,
     );
   }
 
@@ -99,7 +116,6 @@ class Farmer {
       season: season ?? this.season,
       price1kg: price1kg ?? this.price1kg,
       profit1kg: profit1kg ?? this.profit1kg,
-      dailyCrops: dailyCrops ?? this.dailyCrops,
     );
   }
 
@@ -121,15 +137,6 @@ class Farmer {
       'season': season,
       'priceP1kg': price1kg,
       'profite1kg': profit1kg,
-      'dailyCrops': dailyCrops
-    };
-  }
-
-  Map<String, dynamic> dailyCrop(String amount, String type) {
-    var amountDouble = double.parse(amount);
-    return {
-      'amount': amountDouble,
-      'type': type,
     };
   }
 }
