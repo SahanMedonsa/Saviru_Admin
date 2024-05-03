@@ -116,7 +116,7 @@ class _FarmerPageState extends State<FarmerPage> {
                           SizedBox(
                             // color: Colors.red,
                             // width: width * 1 / 2,
-                            height: 600,
+                            // height: 600,
 
                             child: StreamBuilder(
                               stream: _farmerDatabaseServices.getfarmers(),
