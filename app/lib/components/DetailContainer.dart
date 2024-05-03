@@ -21,8 +21,6 @@ class DetailContainer extends StatefulWidget {
 class _DetailContainerState extends State<DetailContainer> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Container(
       width: 210,
       height: 80,

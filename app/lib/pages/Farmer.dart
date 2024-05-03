@@ -62,7 +62,7 @@ class _FarmerPageState extends State<FarmerPage> {
               child: Row(
                 children: [
                   Expanded(
-                    flex: 7,
+                    flex: 5,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(
@@ -115,7 +115,8 @@ class _FarmerPageState extends State<FarmerPage> {
                           ),
                           SizedBox(
                             // color: Colors.red,
-                            width: width * 1 / 2,
+                            // width: width * 1 / 2,
+                            height: 600,
 
                             child: StreamBuilder(
                               stream: _farmerDatabaseServices.getfarmers(),
@@ -135,8 +136,6 @@ class _FarmerPageState extends State<FarmerPage> {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
                                         children: [
                                           DetailContainer(
                                               Cicon: Icons.person,

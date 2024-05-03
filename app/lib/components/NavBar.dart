@@ -22,7 +22,8 @@ class _NavBarState extends State<NavBar> {
       color: Colors.green,
     ),
   ];
-  bool isExpanded = false;
+
+  bool isExpanded = true;
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _NavBarState extends State<NavBar> {
         children: [
           NavigationRail(
             extended: isExpanded,
-            useIndicator: true,
+            useIndicator: false,
             minWidth: 80,
             unselectedIconTheme: const IconThemeData(color: Colors.black),
             selectedIconTheme: const IconThemeData(color: Colors.white),
@@ -52,6 +53,11 @@ class _NavBarState extends State<NavBar> {
             leading: ToggleIconButton(
               initialIcon: Icons.arrow_forward_ios,
               toggledIcon: Icons.arrow_back_ios,
+              onPressed: () {
+                setState(() {
+                  isExpanded = !isExpanded;
+                });
+              },
             ),
             trailing: IconButton(
               icon: const Icon(Icons.more_horiz_rounded),

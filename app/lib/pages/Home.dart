@@ -12,6 +12,7 @@ import 'package:app/components/colorPallet.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -34,192 +35,205 @@ class _HomeState extends State<Home> {
     );
   }
 
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
+            backgroundColor: ColorPalette.forest_Green.withOpacity(0.2),
             endDrawer: const Drawerr(),
             body: Padding(
               padding: EdgeInsets.symmetric(
                   vertical: height * 0.03, horizontal: width * 0.03),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Row(
-                          children: [
-                            Gtext(
-                                text: 'Home Page',
-                                size: 20,
-                                color: ColorPalette.appBar_color,
-                                fweight: FontWeight.bold)
-                          ],
-                        ),
-                        SizedBox(
-                          height: height * 0.05,
-                        ),
-                        SizedBox(
-                          width: 300,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
                             children: [
-                              const Gtext(
-                                  text: 'Add New Blog',
-                                  size: 18,
+                              Gtext(
+                                  text: 'Home Page',
+                                  size: 20,
                                   color: ColorPalette.appBar_color,
-                                  fweight: FontWeight.w500),
-                              Builder(builder: (context) {
-                                return MaterialButton(
-                                  color: ColorPalette.button_color,
-                                  onPressed: () {
-                                    _showAddBlogDialog();
-                                  },
-                                  child: const Gtext(
-                                      text: 'Add',
-                                      size: 15,
-                                      color: ColorPalette.appBar_color,
-                                      fweight: FontWeight.w500),
-                                );
-                              })
+                                  fweight: FontWeight.bold)
                             ],
                           ),
-                        ),
+                          SizedBox(
+                            height: height * 0.05,
+                          ),
+                          SizedBox(
+                            width: 300,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Gtext(
+                                    text: 'Add New Blog',
+                                    size: 18,
+                                    color: ColorPalette.appBar_color,
+                                    fweight: FontWeight.w500),
+                                Builder(builder: (context) {
+                                  return MaterialButton(
+                                    color: ColorPalette.button_color,
+                                    onPressed: () {
+                                      _showAddBlogDialog();
+                                    },
+                                    child: const Gtext(
+                                        text: 'Add',
+                                        size: 15,
+                                        color: ColorPalette.appBar_color,
+                                        fweight: FontWeight.w500),
+                                  );
+                                })
+                              ],
+                            ),
+                          ),
 
-                        //////////////stream builder////////////////////
-                        /////////////////stream builder/////////////////
-                        /////////////////stream builder/////////////////
-                        SizedBox(
-                          height: height * 0.05,
-                        ),
-                        SizedBox(
-                          // color: Colors.red,
-                          width: width * 1 / 2,
+                          //////////////stream builder////////////////////
+                          /////////////////stream builder/////////////////
+                          /////////////////stream builder/////////////////
+                          SizedBox(
+                            height: height * 0.05,
+                          ),
+                          SizedBox(
+                            // color: Colors.red,
+                            width: width * 1 / 2,
 
-                          child: StreamBuilder(
-                            stream: _blogdatabaseServices.getBlogs(),
-                            builder: (context,
-                                AsyncSnapshot<QuerySnapshot> snapshot) {
-                              List Blogs = snapshot.data?.docs ?? [];
+                            child: StreamBuilder(
+                              stream: _blogdatabaseServices.getBlogs(),
+                              builder: (context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                List Blogs = snapshot.data?.docs ?? [];
 
-                              if (Blogs.isEmpty) {
-                                return const Center(child: Text('Add Blogs'));
-                              }
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
+                                if (Blogs.isEmpty) {
+                                  return const Center(child: Text('Add Blogs'));
+                                }
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
 
-                                  //////////////farmers detail///////////////
-                                  SizedBox(
-                                    //     color: Colors.green,
+                                    //////////////farmers detail///////////////
+                                    SizedBox(
+                                      //     color: Colors.green,
 
-                                    height: height * 1,
-                                    child: ListView.builder(
-                                      itemCount: Blogs.length,
-                                      itemBuilder: (context, index) {
-                                        Blog blog = Blogs[index].data();
-                                        String BlogID = Blogs[index].id;
-                                        print(BlogID);
+                                      height: height * 1,
+                                      child: ListView.builder(
+                                        itemCount: Blogs.length,
+                                        itemBuilder: (context, index) {
+                                          Blog blog = Blogs[index].data();
+                                          String BlogID = Blogs[index].id;
+                                          print(BlogID);
 
-                                        return Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Card(
-                                            child: ExpansionTile(
-                                              title: Gtext(
-                                                  text: blog.Title,
-                                                  size: 15,
-                                                  color:
-                                                      ColorPalette.Jungle_Green,
-                                                  fweight: FontWeight.w400),
-                                              subtitle: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Gtext(
-                                                      text: blog.Subtitle,
-                                                      size: 10,
-                                                      color: Colors.black,
-                                                      fweight: FontWeight.w400),
-                                                  Row(
-                                                    children: [
-                                                      IconButton(
-                                                          onPressed: () {},
-                                                          icon:
-                                                              Icon(Icons.edit)),
-                                                      IconButton(
-                                                        onPressed: () {
-                                                          _blogdatabaseServices
-                                                              .deleteBlog(
-                                                                  BlogID);
-                                                        },
-                                                        icon: Icon(
-                                                          Icons.delete,
-                                                          color:
-                                                              ColorPalette.red,
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Card(
+                                              child: ExpansionTile(
+                                                title: Gtext(
+                                                    text: blog.Title,
+                                                    size: 15,
+                                                    color: ColorPalette
+                                                        .Jungle_Green,
+                                                    fweight: FontWeight.w400),
+                                                subtitle: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Gtext(
+                                                        text: blog.Subtitle,
+                                                        size: 10,
+                                                        color: Colors.black,
+                                                        fweight:
+                                                            FontWeight.w400),
+                                                    Row(
+                                                      children: [
+                                                        IconButton(
+                                                            onPressed: () {},
+                                                            icon: Icon(
+                                                                Icons.edit)),
+                                                        IconButton(
+                                                          onPressed: () {
+                                                            _blogdatabaseServices
+                                                                .deleteBlog(
+                                                                    BlogID);
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.delete,
+                                                            color: ColorPalette
+                                                                .red,
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10),
+                                                    child: Column(
+                                                      children: [
+                                                        Gtext(
+                                                            text: blog.Title,
+                                                            size: 15,
+                                                            color: ColorPalette
+                                                                .Jungle_Green,
+                                                            fweight: FontWeight
+                                                                .w400),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Gtext(
+                                                            text: blog.Subtitle,
+                                                            size: 15,
+                                                            color: Colors.black,
+                                                            fweight: FontWeight
+                                                                .w400),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Gtext(
+                                                            text: blog
+                                                                .Description,
+                                                            size: 15,
+                                                            color: Colors.black,
+                                                            fweight: FontWeight
+                                                                .w400),
+                                                      ],
+                                                    ),
                                                   )
                                                 ],
                                               ),
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(10),
-                                                  child: Column(
-                                                    children: [
-                                                      Gtext(
-                                                          text: blog.Title,
-                                                          size: 15,
-                                                          color: ColorPalette
-                                                              .Jungle_Green,
-                                                          fweight:
-                                                              FontWeight.w400),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Gtext(
-                                                          text: blog.Subtitle,
-                                                          size: 15,
-                                                          color: Colors.black,
-                                                          fweight:
-                                                              FontWeight.w400),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Gtext(
-                                                          text:
-                                                              blog.Description,
-                                                          size: 15,
-                                                          color: Colors.black,
-                                                          fweight:
-                                                              FontWeight.w400),
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
                                             ),
-                                          ),
-                                        );
-                                      },
+                                          );
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              );
-                            },
+                                  ],
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    Container(
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
                         width: width * 1 / 2.9,
                         height: height,
                         //color: Colors.red,
@@ -227,21 +241,34 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Gtextn(text: "Percentage of Vegetable Grow "),
+                            Gtextn(text: "Calender "),
                             SizedBox(
                               height: 30,
                             ),
-                            // PieChart(
-                            //   //dataMap: datamap,
-                            //   chartRadius: width * 1 / 6,
-                            //   chartValuesOptions: ChartValuesOptions(
-                            //       showChartValuesInPercentage: true,
-                            //       showChartValues: true),
-                            // ),
+                            TableCalendar(
+                              firstDay: DateTime.utc(2020, 01, 01),
+                              lastDay: DateTime.utc(2030, 12, 31),
+                              focusedDay: _focusedDay,
+                              calendarFormat: _calendarFormat,
+                              onFormatChanged: (format) {
+                                setState(() {
+                                  _calendarFormat = format;
+                                });
+                              },
+                              onDaySelected: (selectedDay, focusedDay) {
+                                setState(() {
+                                  _selectedDay = selectedDay;
+                                  _focusedDay = focusedDay;
+                                });
+                              },
+                              selectedDayPredicate: (day) {
+                                return isSameDay(_selectedDay, day);
+                              },
+                            ),
                           ],
-                        ))
-                  ],
-                ),
+                        )),
+                  )
+                ],
               ),
             )));
   }
