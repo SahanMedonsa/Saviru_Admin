@@ -24,8 +24,8 @@ class _DetailContainerState extends State<DetailContainer> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      width: width * 0.11,
-      height: height * 0.09,
+      width: 210,
+      height: 80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: widget.Ccolor,
