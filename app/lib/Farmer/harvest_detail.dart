@@ -30,7 +30,7 @@ class harvestdetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Gtextn(text: 'Personal Details'),
+          const Gtextn(text: 'Harvest Details'),
           const SizedBox(
             height: 10,
           ),

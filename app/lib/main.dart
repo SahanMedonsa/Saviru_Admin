@@ -1,5 +1,4 @@
-import 'dart:ui' as ui;
-
+import 'dart:ui_web' as ui;
 import 'package:app/components/NavBar.dart';
 import 'package:app/pages/Home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

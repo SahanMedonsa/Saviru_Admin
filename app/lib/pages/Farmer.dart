@@ -4,6 +4,7 @@ import 'package:app/components/DetailContainer.dart';
 import 'package:app/components/Drawer.dart';
 import 'package:app/components/Gtext.dart';
 import 'package:app/components/colorPallet.dart';
+import 'package:app/components/textfiels.dart';
 import 'package:app/controllers/FarmerControllers.dart';
 import 'package:app/models/FarmerDetailmodel.dart';
 import 'package:app/pages/FarmerDetails.dart';
@@ -44,6 +45,8 @@ class _FarmerPageState extends State<FarmerPage> {
   final FarmerDatabaseServices _farmerDatabaseServices =
       FarmerDatabaseServices();
 
+  TextEditingController search_controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -78,7 +81,28 @@ class _FarmerPageState extends State<FarmerPage> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.05,
+                            height: height * 0.03,
+                          ),
+                          TextFormField(
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            controller: search_controller,
+                            decoration: InputDecoration(
+                              prefixIconColor: ColorPalette.appBar_color,
+
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: BorderSide(
+                                      color: ColorPalette.appBar_color)),
+                              hintText:
+                                  'Search', // Use labelText instead of label
+
+                              // Assuming TextStyles.smallText is defined
+                              prefixIcon: Icon(Icons.search),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.03,
                           ),
                           SizedBox(
                             width: 300,
@@ -169,7 +193,7 @@ class _FarmerPageState extends State<FarmerPage> {
                                     SizedBox(
                                       //     color: Colors.green,
 
-                                      height: height * 1,
+                                      height: height * 0.8,
                                       child: ListView.builder(
                                         itemCount: farmers.length,
                                         itemBuilder: (context, index) {
@@ -178,7 +202,8 @@ class _FarmerPageState extends State<FarmerPage> {
                                           // print(farmerId);
 
                                           return Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
                                             child: Card(
                                               child: ExpansionTile(
                                                 title: Gtext(
@@ -420,7 +445,6 @@ class _FarmerPageState extends State<FarmerPage> {
                                     ),
                                   ],
                                 );
-                                return CircularProgressIndicator();
                               },
                             ),
                           ),

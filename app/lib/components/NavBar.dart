@@ -1,7 +1,11 @@
+import 'package:app/Transpotation/RestockContainer.dart';
+import 'package:app/Transpotation/transportaion.dart';
 import 'package:app/components/Button/Toggle_button.dart';
 import 'package:app/pages/Farmer.dart';
 import 'package:app/pages/FarmerDetails.dart';
+import 'package:app/pages/Fertilizer.dart';
 import 'package:app/pages/Home.dart';
+import 'package:app/pages/Transport.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatefulWidget {
@@ -13,14 +17,10 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   final List<Widget> _pages = [
+    TransportPage(),
     Home(),
-    const FarmerPage(),
-    Container(
-      color: Colors.amber,
-    ),
-    Container(
-      color: Colors.green,
-    ),
+    FarmerPage(),
+    Fertilizer(),
   ];
 
   bool isExpanded = true;
@@ -46,9 +46,9 @@ class _NavBarState extends State<NavBar> {
               NavigationRailDestination(
                   icon: Icon(Icons.person), label: Text('Farmer')),
               NavigationRailDestination(
-                  icon: Icon(Icons.bar_chart), label: Text('Analitics')),
+                  icon: Icon(Icons.shopping_basket), label: Text('Fertilizer')),
               NavigationRailDestination(
-                  icon: Icon(Icons.settings), label: Text('Settings'))
+                  icon: Icon(Icons.train), label: Text('Transpotation'))
             ],
             leading: ToggleIconButton(
               initialIcon: Icons.arrow_forward_ios,

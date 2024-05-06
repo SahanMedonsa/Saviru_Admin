@@ -1,6 +1,5 @@
 import 'package:app/components/Colorpallet.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Gtext extends StatelessWidget {
   final String text;
@@ -18,8 +17,7 @@ class Gtext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: GoogleFonts.roboto(
-            color: color, fontSize: size, fontWeight: fweight));
+        style: TextStyle(color: color, fontSize: size, fontWeight: fweight));
   }
 }
 
@@ -34,7 +32,7 @@ class Gtextn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: GoogleFonts.roboto(
+        style: TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500));
   }
 }
@@ -50,7 +48,7 @@ class Gtextfd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: GoogleFonts.roboto(
+        style: TextStyle(
             color: ColorPalette.appBar_color,
             fontSize: 16,
             fontWeight: FontWeight.w400));
@@ -68,7 +66,7 @@ class Gtextnm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: GoogleFonts.roboto(
+        style: TextStyle(
             color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal));
   }
 }
