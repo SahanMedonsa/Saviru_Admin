@@ -81,16 +81,6 @@ class _blogAlertboxState extends State<blogAlertbox> {
             String subtitle = bcontoller.subtitleController.text;
             String description = bcontoller.DescriptionController.text;
 
-            String formattedDescription = '''
-              <b>This is a bold text.</b>
-              <ul>
-                <li>Bullet Point 1</li>
-                <li>Bullet Point 2</li>
-                <li>Bullet Point 3</li>
-              </ul>
-              <a href="https://www.example.com">Link to Example</a>
-            ''';
-
             // Create a new Blog object with the retrieved text
             Blog blog = Blog(
               Title: title,

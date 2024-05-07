@@ -17,10 +17,10 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   final List<Widget> _pages = [
-    TransportPage(),
     Home(),
     FarmerPage(),
     Fertilizer(),
+    TransportPage(),
   ];
 
   bool isExpanded = true;
