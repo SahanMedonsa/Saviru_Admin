@@ -27,9 +27,9 @@ class FarmerPage extends StatefulWidget {
 class _FarmerPageState extends State<FarmerPage> {
   Map<String, double> datamap = {
     "Carrot": 10,
-    "Carbadge": 15,
+    "Cabbage": 15,
     "Capsicum": 12,
-    "Onion": 15,
+    "Beans": 15,
     "Potato": 18
   };
   final contoller = Get.put(FarmerControllers());
@@ -159,7 +159,7 @@ class _FarmerPageState extends State<FarmerPage> {
                                       scrollDirection: Axis.horizontal,
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           DetailContainer(
                                               Cicon: Icons.person,
@@ -176,12 +176,12 @@ class _FarmerPageState extends State<FarmerPage> {
                                             // color: Colors.red,
                                             width: 100,
                                           ),
-                                          DetailContainer(
-                                              Cicon: Icons.person,
-                                              ctext: "Registered Farmers",
-                                              count: farmers.length.toString(),
-                                              Ccolor:
-                                                  ColorPalette.Jungle_Green),
+                                          // DetailContainer(
+                                          //     Cicon: Icons.person,
+                                          //     ctext: "Registered Farmers",
+                                          //     count: farmers.length.toString(),
+                                          //     Ccolor:
+                                          //         ColorPalette.Jungle_Green),
                                         ],
                                       ),
                                     ),
@@ -458,27 +458,166 @@ class _FarmerPageState extends State<FarmerPage> {
                         width: width * 1 / 2.9,
                         height: height,
                         //color: Colors.red,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Gtextn(text: "Percentage of Vegetable Grow "),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            PieChart(
-                              dataMap: datamap,
-                              chartRadius: width * 1 / 6,
-                              chartValuesOptions: ChartValuesOptions(
-                                  showChartValuesInPercentage: true,
-                                  showChartValues: true),
-                            ),
-                          ],
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Gtextn(text: "Percentage of Vegetable Grow "),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              PieChart(
+                                dataMap: datamap,
+                                chartRadius: width * 1 / 6,
+                                chartValuesOptions: ChartValuesOptions(
+                                    showChartValuesInPercentage: true,
+                                    showChartValues: true),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Gtextn(
+                                  text:
+                                      "Farmer Price Calculations ( 01 acres) "),
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    DropdownButtonFormField<String>(
+                                      value: _selectedDistrict,
+                                      items: [
+                                        'Carrot',
+                                        'Cabbage',
+                                        'Potato',
+                                        'Beans',
+                                        'Capcicum'
+                                      ]
+                                          .map((district) =>
+                                              DropdownMenuItem<String>(
+                                                value: district,
+                                                child: Text(district),
+                                              ))
+                                          .toList(),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _selectedDistrict = value ??
+                                              'Kalutara'; // Default to Kalutara if null
+                                        });
+                                      },
+                                      decoration: const InputDecoration(
+                                        labelText: 'Select Vegetable',
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    TextField(
+                                      controller: _carrotController,
+                                      decoration: const InputDecoration(
+                                          labelText: 'Pre Workers Cost :'),
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    TextField(
+                                      controller: _potatoController,
+                                      decoration: const InputDecoration(
+                                          labelText: 'Seeds price :'),
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    TextField(
+                                      controller: _cabbageController,
+                                      decoration: const InputDecoration(
+                                          labelText: 'Fertilizer Cost :'),
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    TextField(
+                                      controller: _capsicumController,
+                                      decoration: const InputDecoration(
+                                          labelText: 'Insecticides Cost'),
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    TextField(
+                                      controller: _beansController,
+                                      decoration: const InputDecoration(
+                                          labelText: 'Transport cost'),
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                    SizedBox(height: 40.0),
+                                    ElevatedButton(
+                                      onPressed: _submitForm,
+                                      child: Text('Submit'),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         )),
                   )
                 ],
               ),
             )),
+      ),
+    );
+  }
+
+  late TextEditingController _carrotController;
+  late TextEditingController _potatoController;
+  late TextEditingController _cabbageController;
+  late TextEditingController _capsicumController;
+  late TextEditingController _beansController;
+
+  String _selectedDistrict = 'Carrot'; // Default selected district
+
+  @override
+  void initState() {
+    super.initState();
+    _carrotController = TextEditingController();
+    _potatoController = TextEditingController();
+    _cabbageController = TextEditingController();
+    _capsicumController = TextEditingController();
+    _beansController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _carrotController.dispose();
+    _potatoController.dispose();
+    _cabbageController.dispose();
+    _capsicumController.dispose();
+    _beansController.dispose();
+    super.dispose();
+  }
+
+  void _submitForm() {
+    // Handle form submission here (e.g., save data to Firestore)
+    // Clear text field values after submission
+    _carrotController.clear();
+    _potatoController.clear();
+    _cabbageController.clear();
+    _capsicumController.clear();
+    _beansController.clear();
+    setState(() {
+      _selectedDistrict = 'Carrot'; // Reset district dropdown to default
+    });
+    // Show a dialog or perform further actions after submission
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Price Generated'),
+        content: Text('Carrote cost : 45/-'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close dialog
+            },
+            child: Text('OK'),
+          ),
+        ],
       ),
     );
   }

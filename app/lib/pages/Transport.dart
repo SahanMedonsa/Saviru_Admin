@@ -165,7 +165,8 @@ class _TransportPageState extends State<TransportPage> {
                     SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
-                          labelText: 'Enter Distance from Colombo fort'),
+                          labelText:
+                              'Enter Distance from Colombo fort to Badulla (292km)'),
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
                         setState(() {

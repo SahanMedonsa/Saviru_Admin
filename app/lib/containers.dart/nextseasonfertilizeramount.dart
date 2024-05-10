@@ -2,8 +2,8 @@ import 'package:app/components/Gtext.dart';
 import 'package:app/containers.dart/fertilizertypecard.dart';
 import 'package:flutter/material.dart';
 
-class fertilizerstockcard extends StatelessWidget {
-  const fertilizerstockcard({super.key});
+class nextseasonfertilizerstockcard extends StatelessWidget {
+  const nextseasonfertilizerstockcard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class fertilizerstockcard extends StatelessWidget {
           height: 20,
         ),
         Gtext(
-            text: 'Fertilizer Stock Availability',
+            text: 'Required Stock for next season',
             size: 25,
             color: Colors.black,
             fweight: FontWeight.w600),
@@ -38,13 +38,13 @@ class fertilizerstockcard extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        fertilizertypecard(title: 'Uria', amount: '250'),
-        fertilizertypecard(title: 'TSP', amount: '150'),
-        fertilizertypecard(title: 'MOP', amount: '250'),
-        fertilizertypecard(title: 'KIE', amount: '450'),
-        fertilizertypecard(title: 'DOLOMITE', amount: '350'),
-        fertilizertypecard(title: 'SOA', amount: '150'),
-        fertilizertypecard(title: 'BORATE', amount: '250'),
+        fertilizertypecard(title: 'Uria', amount: '150'),
+        fertilizertypecard(title: 'TSP', amount: '250'),
+        fertilizertypecard(title: 'MOP', amount: '350'),
+        fertilizertypecard(title: 'KIE', amount: '350'),
+        fertilizertypecard(title: 'DOLOMITE', amount: '250'),
+        fertilizertypecard(title: 'SOA', amount: '250'),
+        fertilizertypecard(title: 'BORATE', amount: '150'),
       ],
     );
   }

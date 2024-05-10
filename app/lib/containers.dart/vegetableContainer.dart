@@ -27,10 +27,9 @@ class vegetablecontainer extends StatelessWidget {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                vegeCard(Vegename: 'Carrot'),
-                vegeCard(Vegename: 'Carrot'),
+                vegeCard(Vegename: 'Potato'),
               ],
             ),
           ],

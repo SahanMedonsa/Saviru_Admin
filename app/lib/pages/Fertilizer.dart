@@ -3,6 +3,7 @@ import 'package:app/components/Gtext.dart';
 import 'package:app/components/colorPallet.dart';
 import 'package:app/containers.dart/choosefertilzer.dart';
 import 'package:app/containers.dart/fertilizerstockcard.dart';
+import 'package:app/containers.dart/nextseasonfertilizeramount.dart';
 import 'package:app/containers.dart/vegetableContainer.dart';
 
 import 'package:flutter/material.dart';
@@ -33,9 +34,8 @@ class _FertilizerState extends State<Fertilizer> {
               child: Column(
                 children: [
                   Container(
-                    height: height * 1 / 2,
-                    //child:
-                  ),
+                      height: height * 1 / 2,
+                      child: nextseasonfertilizerstockcard()),
                   Container(
                     height: height * 1 / 2,
                     child: Column(

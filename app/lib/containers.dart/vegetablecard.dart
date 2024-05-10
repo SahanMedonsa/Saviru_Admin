@@ -17,7 +17,7 @@ class vegeCard extends StatelessWidget {
       ),
       child: Container(
         width: 300,
-        height: 120,
+        height: 100,
         decoration: BoxDecoration(
             color: ColorPalette.Jungle_Green.withOpacity(0.9),
             borderRadius: BorderRadius.circular(15)),
