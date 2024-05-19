@@ -15,7 +15,6 @@ Future<void> main() async {
   FirebaseFirestore.instance.settings =
       const Settings(persistenceEnabled: true);
 
-  // Use the suggested replacement from dart:ui_web for setting debugEmulateFlutterTesterEnvironment
   debugEmulateFlutterTesterEnvironment = true;
 
   runApp(const MyApp());
