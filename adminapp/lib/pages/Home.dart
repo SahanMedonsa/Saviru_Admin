@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
                           const Row(
                             children: [
                               Gtext(
-                                  text: 'Home Page',
+                                  text: 'Blog Page',
                                   size: 20,
                                   color: ColorPalette.appBar_color,
                                   fweight: FontWeight.bold)

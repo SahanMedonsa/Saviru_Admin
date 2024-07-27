@@ -12,13 +12,16 @@ class DetailRow extends StatelessWidget {
     return Container(
       // width: 150,
       height: 30,
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(width: 140, child: Gtextfd(text: detail)),
-          Gtextfd(text: " : "),
-          Gtextnm(text: fdetail)
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(width: 140, child: Gtextfd(text: detail)),
+            const Gtextfd(text: " : "),
+            Gtextnm(text: fdetail)
+          ],
+        ),
       ),
     );
   }
