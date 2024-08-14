@@ -1,5 +1,6 @@
 import 'package:adminapp/Farmer/harvest_detail.dart';
 import 'package:adminapp/Farmer/personal_detail.dart';
+import 'package:adminapp/Farmer/priceCalculation.dart';
 import 'package:adminapp/components/Colorpallet.dart';
 import 'package:adminapp/components/DetailContainer.dart';
 import 'package:adminapp/components/Drawer.dart';
@@ -50,8 +51,8 @@ class _FarmerPageState extends State<FarmerPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print(width);
-    print(height);
+    // print(width);
+    // print(height);
     return ScreenUtilInit(
       designSize: Size(360, 690),
       child: SafeArea(
@@ -480,79 +481,7 @@ class _FarmerPageState extends State<FarmerPage> {
                               Gtextn(
                                   text:
                                       "Farmer Price Calculations ( 01 acres) "),
-                              Container(
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    DropdownButtonFormField<String>(
-                                      value: _selectedDistrict,
-                                      items: [
-                                        'Carrot',
-                                        'Cabbage',
-                                        'Potato',
-                                        'Beans',
-                                        'Capcicum'
-                                      ]
-                                          .map((district) =>
-                                              DropdownMenuItem<String>(
-                                                value: district,
-                                                child: Text(district),
-                                              ))
-                                          .toList(),
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _selectedDistrict = value ??
-                                              'Kalutara'; // Default to Kalutara if null
-                                        });
-                                      },
-                                      decoration: const InputDecoration(
-                                        labelText: 'Select Vegetable',
-                                      ),
-                                    ),
-                                    const SizedBox(height: 20.0),
-                                    TextField(
-                                      controller: _carrotController,
-                                      decoration: const InputDecoration(
-                                          labelText: 'Pre Workers Cost :'),
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                    const SizedBox(height: 20.0),
-                                    TextField(
-                                      controller: _potatoController,
-                                      decoration: const InputDecoration(
-                                          labelText: 'Seeds price :'),
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                    const SizedBox(height: 20.0),
-                                    TextField(
-                                      controller: _cabbageController,
-                                      decoration: const InputDecoration(
-                                          labelText: 'Fertilizer Cost :'),
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                    const SizedBox(height: 20.0),
-                                    TextField(
-                                      controller: _capsicumController,
-                                      decoration: const InputDecoration(
-                                          labelText: 'Insecticides Cost'),
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                    const SizedBox(height: 20.0),
-                                    TextField(
-                                      controller: _beansController,
-                                      decoration: const InputDecoration(
-                                          labelText: 'Transport cost'),
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                    SizedBox(height: 40.0),
-                                    ElevatedButton(
-                                      onPressed: _submitForm,
-                                      child: Text('Submit'),
-                                    ),
-                                  ],
-                                ),
-                              )
+                              farmerpricecal()
                             ],
                           ),
                         )),
@@ -560,63 +489,6 @@ class _FarmerPageState extends State<FarmerPage> {
                 ],
               ),
             )),
-      ),
-    );
-  }
-
-  late TextEditingController _carrotController;
-  late TextEditingController _potatoController;
-  late TextEditingController _cabbageController;
-  late TextEditingController _capsicumController;
-  late TextEditingController _beansController;
-
-  String _selectedDistrict = 'Carrot'; // Default selected district
-
-  @override
-  void initState() {
-    super.initState();
-    _carrotController = TextEditingController();
-    _potatoController = TextEditingController();
-    _cabbageController = TextEditingController();
-    _capsicumController = TextEditingController();
-    _beansController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _carrotController.dispose();
-    _potatoController.dispose();
-    _cabbageController.dispose();
-    _capsicumController.dispose();
-    _beansController.dispose();
-    super.dispose();
-  }
-
-  void _submitForm() {
-    // Handle form submission here (e.g., save data to Firestore)
-    // Clear text field values after submission
-    _carrotController.clear();
-    _potatoController.clear();
-    _cabbageController.clear();
-    _capsicumController.clear();
-    _beansController.clear();
-    setState(() {
-      _selectedDistrict = 'Carrot'; // Reset district dropdown to default
-    });
-    // Show a dialog or perform further actions after submission
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Price Generated'),
-        content: Text('Carrote cost : 45/-'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close dialog
-            },
-            child: Text('OK'),
-          ),
-        ],
       ),
     );
   }

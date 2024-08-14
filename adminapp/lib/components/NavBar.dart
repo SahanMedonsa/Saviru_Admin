@@ -4,6 +4,7 @@ import 'package:adminapp/pages/Fertilizer.dart';
 import 'package:adminapp/pages/Home.dart';
 import 'package:adminapp/pages/Transport.dart';
 import 'package:adminapp/pages/vegecollection.dart';
+import 'package:adminapp/pages/vegesatatus.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatefulWidget {
@@ -15,11 +16,13 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   final List<Widget> _pages = [
+    Vegesatatus(),
     FarmerPage(),
     Home(),
     Fertilizer(),
     TransportPage(),
     vegeCollection(),
+    
   ];
 
   bool isExpanded = true;
@@ -50,7 +53,10 @@ class _NavBarState extends State<NavBar> {
                   icon: Icon(Icons.train), label: Text('Transpotation')),
               NavigationRailDestination(
                   icon: Icon(Icons.collections),
-                  label: Text('Vege Collections'))
+                  label: Text('Vege Collections')),
+                     NavigationRailDestination(
+                  icon: Icon(Icons.stacked_bar_chart),
+                  label: Text('Vege Status'))
             ],
             leading: ToggleIconButton(
               initialIcon: Icons.arrow_forward_ios,

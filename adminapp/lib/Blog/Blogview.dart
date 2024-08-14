@@ -16,7 +16,7 @@ class blogview extends StatefulWidget {
 }
 
 class _HomeState extends State<blogview> {
-  final _bcontoller = Get.put(BlogControllers());
+  //final _bcontoller = Get.put(BlogControllers());
   final BlogDatabaseServices _blogdatabaseServices = BlogDatabaseServices();
 
   // Function to show the blog alert dialog
