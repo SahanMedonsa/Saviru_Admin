@@ -455,37 +455,35 @@ class _FarmerPageState extends State<FarmerPage> {
                   Expanded(
                     flex: 3,
                     child: Container(
-                        width: width * 1 / 2.9,
-                        height: height,
-                        //color: Colors.red,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Gtextn(text: "Percentage of Vegetable Grow "),
-                              SizedBox(
-                                height: 30,
+                      width: width * 1 / 2.9,
+                      height: height,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Gtextn(text: "Percentage of Vegetable Grow "),
+                            SizedBox(height: 30),
+                            PieChart(
+                              dataMap: datamap,
+                              chartRadius: width * 1 / 6,
+                              chartValuesOptions: ChartValuesOptions(
+                                showChartValuesInPercentage: true,
+                                showChartValues: true,
                               ),
-                              PieChart(
-                                dataMap: datamap,
-                                chartRadius: width * 1 / 6,
-                                chartValuesOptions: ChartValuesOptions(
-                                    showChartValuesInPercentage: true,
-                                    showChartValues: true),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Gtextn(
-                                  text:
-                                      "Farmer Price Calculations ( 01 acres) "),
-                              farmerpricecal()
-                            ],
-                          ),
-                        )),
-                  )
+                            ),
+                            SizedBox(height: 30),
+                            Gtextn(
+                                text: "Farmer Price Calculations ( 01 acres) "),
+                            PredictionForm(),
+                            // You might want to include additional spacing below the PredictionForm
+                            SizedBox(height: 20),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )),

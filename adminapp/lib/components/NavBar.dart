@@ -3,6 +3,7 @@ import 'package:adminapp/pages/Farmer.dart';
 import 'package:adminapp/pages/Fertilizer.dart';
 import 'package:adminapp/pages/Home.dart';
 import 'package:adminapp/pages/Transport.dart';
+import 'package:adminapp/pages/fertilizer_outlet.dart';
 import 'package:adminapp/pages/vegecollection.dart';
 import 'package:adminapp/pages/vegesatatus.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +17,15 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   final List<Widget> _pages = [
-    Vegesatatus(),
+    
+   
     FarmerPage(),
     Home(),
     Fertilizer(),
     TransportPage(),
     vegeCollection(),
+    Vegesatatus(),
+    FertilizerOutlet(),
     
   ];
 
@@ -54,9 +58,12 @@ class _NavBarState extends State<NavBar> {
               NavigationRailDestination(
                   icon: Icon(Icons.collections),
                   label: Text('Vege Collections')),
-                     NavigationRailDestination(
+              NavigationRailDestination(
                   icon: Icon(Icons.stacked_bar_chart),
-                  label: Text('Vege Status'))
+                  label: Text('Vege Status')),
+                   NavigationRailDestination(
+                  icon: Icon(Icons.shop_2_outlined),
+                  label: Text('fertilizer Outlet'))
             ],
             leading: ToggleIconButton(
               initialIcon: Icons.arrow_forward_ios,
