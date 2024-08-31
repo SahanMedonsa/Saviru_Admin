@@ -8,7 +8,7 @@ const String FARMER_COLLECTION_REF = "farmer";
 
 class FarmerDatabaseServices {
   final _firestore = FirebaseFirestore.instance;
-  late final CollectionReference _faremerRef;
+  late final CollectionReference<Farmer> _faremerRef;
 
 //json  withconverter
   FarmerDatabaseServices() {
@@ -37,5 +37,11 @@ class FarmerDatabaseServices {
   //deleted todo
   void deletefarmer(String farmerId) {
     _faremerRef.doc(farmerId).delete();
+  }
+
+   // New method to search by NIC
+   Stream<List<Farmer>> searchFarmersByNIC(String nic) {
+    return _faremerRef.where('nic', isEqualTo: nic).snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => doc.data()).toList());
   }
 }

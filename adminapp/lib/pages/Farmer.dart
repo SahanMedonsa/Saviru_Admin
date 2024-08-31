@@ -47,6 +47,8 @@ class _FarmerPageState extends State<FarmerPage> {
 
   TextEditingController search_controller = TextEditingController();
 
+  String? selectedFarmerNIC;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -83,21 +85,26 @@ class _FarmerPageState extends State<FarmerPage> {
                           SizedBox(
                             height: height * 0.03,
                           ),
+
+                          // Updated search bar to search by NIC
                           TextFormField(
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
                             controller: search_controller,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedFarmerNIC =
+                                    value; // Update the selected farmer NIC
+                              });
+                            },
                             decoration: InputDecoration(
                               prefixIconColor: ColorPalette.appBar_color,
-
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(13),
-                                  borderSide: BorderSide(
-                                      color: ColorPalette.appBar_color)),
-                              hintText:
-                                  'Search', // Use labelText instead of label
-
-                              // Assuming TextStyles.smallText is defined
+                                borderRadius: BorderRadius.circular(13),
+                                borderSide: BorderSide(
+                                    color: ColorPalette.appBar_color),
+                              ),
+                              hintText: 'Search Farmer NIC',
                               prefixIcon: Icon(Icons.search),
                             ),
                           ),
@@ -176,12 +183,7 @@ class _FarmerPageState extends State<FarmerPage> {
                                             // color: Colors.red,
                                             width: 100,
                                           ),
-                                          // DetailContainer(
-                                          //     Cicon: Icons.person,
-                                          //     ctext: "Registered Farmers",
-                                          //     count: farmers.length.toString(),
-                                          //     Ccolor:
-                                          //         ColorPalette.Jungle_Green),
+                                    
                                         ],
                                       ),
                                     ),
@@ -214,6 +216,7 @@ class _FarmerPageState extends State<FarmerPage> {
                                                     color: ColorPalette
                                                         .Jungle_Green,
                                                     fweight: FontWeight.w400),
+                                                subtitle: Text(farmer.nic),
                                                 children: [
                                                   Container(
                                                     height: 400,

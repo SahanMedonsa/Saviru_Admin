@@ -6,13 +6,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 // Assume you have a service class similar to FarmerDatabaseServices for fertilizer outlets
-class FertilizerOutletDatabaseServices {
+class FertilizerOutletDatabaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final String collectionName = "fertilizer"; // Specified collection name
 
   Future<void> addOutlet(FertilizerOutlet outlet) async {
     await _firestore.collection(collectionName).add(outlet.toJson());
   }
+
+  
+
+  
 }
 
 class FertilizerOutletForm extends StatefulWidget {
@@ -32,7 +36,7 @@ class _FertilizerOutletFormState extends State<FertilizerOutletForm> {
   final TextEditingController phoneNumController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  final FertilizerOutletDatabaseServices _databaseServices = FertilizerOutletDatabaseServices();
+  final FertilizerOutletDatabaseService _databaseServices = FertilizerOutletDatabaseService();
 
   bool isEditing = false; // Add flag for editing mode
   FertilizerOutlet? selectedOutlet; // For updating, if applicable

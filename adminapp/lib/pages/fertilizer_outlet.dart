@@ -1,6 +1,9 @@
 import 'package:adminapp/components/Colorpallet.dart';
 import 'package:adminapp/components/Gtext.dart';
 import 'package:adminapp/fertilizer/outlet_create_form.dart';
+import 'package:adminapp/fertilizer/outleteview.dart';
+import 'package:adminapp/services/outlet_fert_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class FertilizerOutlet extends StatefulWidget {
@@ -10,22 +13,23 @@ class FertilizerOutlet extends StatefulWidget {
   State<FertilizerOutlet> createState() => _FertilizerOutletState();
 }
 
+final FertilizerOutletDatabaseServices _fertilizerOutletService =
+    FertilizerOutletDatabaseServices();
+
 class _FertilizerOutletState extends State<FertilizerOutlet> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     void _showAlertDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Create a new fertiler Outlet.'),
-        content: FertilizerOutletForm(),
-        
-      ),
-    );
-  }
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Create a new fertilizer outlet.'),
+          content: FertilizerOutletForm(), // Ensure this is defined elsewhere
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -39,8 +43,7 @@ class _FertilizerOutletState extends State<FertilizerOutlet> {
             Expanded(
               flex: 4,
               child: Container(
-                width: width*0.5,
-              //  color: Colors.amber,
+                width: width * 0.5,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -48,23 +51,26 @@ class _FertilizerOutletState extends State<FertilizerOutlet> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Gtext(
-                            text: "Create a new outlet",
-                            size: 20,
-                            color: Colors.black,
-                            fweight: FontWeight.bold),
+                          text: "Create a new outlet",
+                          size: 20,
+                          color: Colors.black,
+                          fweight: FontWeight.bold,
+                        ),
                         ElevatedButton(
                           onPressed: () {
-                          _showAlertDialog(context);
+                            _showAlertDialog(context);
                           },
-                          
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(10), // Rounded corners
                             ),
                           ),
-                          child: Gtextn(
+                          child: Gtext(
                             text: "Add",
+                            size: 16,
+                            color: Colors.black,
+                            fweight: FontWeight.normal,
                           ),
                         )
                       ],
@@ -74,25 +80,10 @@ class _FertilizerOutletState extends State<FertilizerOutlet> {
                 ),
               ),
             ),
-
-            //2nd row
-             Expanded(
+            // 2nd column
+            Expanded(
               flex: 5,
-              child: Container(
-                width: width*0.5,
-               // color: Colors.red,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Gtext(
-                        text: "Outlet Details",
-                        size: 20,
-                        color: Colors.black,
-                        fweight: FontWeight.bold),
-                    SizedBox(height: 10),
-                  ],
-                ),
-              ),
+              child: OutletView()
             ),
           ],
         ),
