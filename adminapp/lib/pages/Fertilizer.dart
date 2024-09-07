@@ -28,15 +28,12 @@ class _FertilizerState extends State<Fertilizer> {
       body: Row(
         children: [
           Expanded(
-            flex: 6,
+            flex: 4,
             child: Container(
               child: Column(
                 children: [
                   Container(
-                      height: height * 1 / 2,
-                      child: nextseasonfertilizerstockcard()),
-                  Container(
-                    height: height * 1 / 2,
+                    height: height ,
                     child: Column(
                       children: [
                         SizedBox(
@@ -59,37 +56,90 @@ class _FertilizerState extends State<Fertilizer> {
             ),
           ),
           Expanded(
-            flex: 6,
+            flex: 8,
             child: Container(
               child: Column(
                 children: [
                   //vege containers
                   Container(
-                    height: height * 1 / 2,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: const Column(
-                        children: [
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Gtext(
-                              text: 'Vegetables',
-                              size: 25,
-                              color: Colors.black,
-                              fweight: FontWeight.w600),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Center(child: vegetablecontainer())
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
                       height: height * 1 / 2,
-                      // color: Colors.green,
-                      child: fertilizerstockcard()),
+                      child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              const Gtext(
+                                  text: 'Fertilizer Availbel Stock',
+                                  size: 25,
+                                  color: Colors.black,
+                                  fweight: FontWeight.w600),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Column(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20, left: 55, right: 55),
+                                  child: Container(
+                                    // width: width * 0.6,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                     // color: Colors.amber,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          SizedBox(
+                                              width: 200,
+                                              child: Gtext(
+                                                  text: "Outlet Number",
+                                                  size: 18,
+                                                  color: Colors.black,
+                                                  fweight: FontWeight.w600)),
+                                                  
+                                          Gtext(
+                                              text: "TSP",
+                                              size: 16,
+                                              color: Colors.black,
+                                              fweight: FontWeight.w400),
+                                          Gtext(
+                                              text: "Veg. Fert",
+                                              size: 16,
+                                              color: Colors.black,
+                                              fweight: FontWeight.w400),
+                                          Gtext(
+                                              text: "Dolomite",
+                                              size: 16,
+                                              color: Colors.black,
+                                              fweight: FontWeight.w400),
+                                          Gtext(
+                                              text: "MOP",
+                                              size: 16,
+                                              color: Colors.black,
+                                              fweight: FontWeight.w400),
+                                          Gtext(
+                                              text: "KIE",
+                                              size: 16,
+                                              color: Colors.black,
+                                              fweight: FontWeight.w400),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                              SizedBox(
+                                width: width 
+                                ,
+                                height: height,
+                                child: VegetableContainer()),
+                            ],
+                          )))
                 ],
               ),
             ),

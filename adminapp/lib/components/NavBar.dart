@@ -18,10 +18,10 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   final List<Widget> _pages = [
     
-   
+   Fertilizer(),
     FarmerPage(),
     Home(),
-    Fertilizer(),
+    
     TransportPage(),
     vegeCollection(),
     Vegesatatus(),
