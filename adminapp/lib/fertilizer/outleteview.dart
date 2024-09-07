@@ -1,3 +1,4 @@
+import 'package:adminapp/components/Colorpallet.dart';
 import 'package:adminapp/models/fertilize_outlet_model.dart';
 import 'package:adminapp/services/outlet_fert_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -47,6 +48,7 @@ class _OutletViewState extends State<OutletView> {
 
     return SafeArea(
       child: Scaffold(
+       // backgroundColor: ColorPalette.forest_Green.withOpacity(0.2),
         body: SizedBox(
           width: width * 0.5,
           child: Column(
@@ -72,6 +74,7 @@ class _OutletViewState extends State<OutletView> {
                     FertilizerOutlet outlet = _filteredOutlets[index];
                     return Card(
                       child: ListTile(
+                        tileColor: ColorPalette.forest_Green.withOpacity(0.2),
                         title: Text(outlet.outletNo, style: TextStyle(fontWeight: FontWeight.bold)),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

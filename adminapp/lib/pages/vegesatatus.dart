@@ -279,7 +279,7 @@ class _VegesatatusState extends State<Vegesatatus> {
 
             //2nd colum
             Expanded(
-              flex: 3,
+              flex: 6,
               child: Padding(
                 padding: const EdgeInsets.only(top: 25),
                 child: ListView(
@@ -288,7 +288,7 @@ class _VegesatatusState extends State<Vegesatatus> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Gtext(
-                                    text: "Vegetable Status Update- daily (Rs.)",
+                                    text: "Vegetable Status Update- daily (per 1kg - Rs.)",
                                     size: 20,
                                     color: Colors.black,
                                     fweight: FontWeight.bold),
@@ -308,6 +308,8 @@ class _VegesatatusState extends State<Vegesatatus> {
                                   width: 60, child: Gtextnm(text: "Carrot")),
                               Container(
                                   width: 70, child: Gtextnm(text: "Cabbage")),
+                                   Container(
+                                  width: 70, child: Gtextnm(text: "Potato")),
                               Container(
                                   width: 60, child: Gtextnm(text: "Brinjal")),
                               Container(
@@ -394,6 +396,12 @@ class _VegesatatusState extends State<Vegesatatus> {
                                                   width: 80,
                                                   child: Text(
                                                       "${vegetableStatus.potato}")),
+
+                                                       Container(
+                                                  width: 80,
+                                                  child: Text(
+                                                      "${vegetableStatus.brinjal}")),
+
                                               Container(
                                                   width: 80,
                                                   child: Text(

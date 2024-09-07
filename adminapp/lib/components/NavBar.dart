@@ -1,4 +1,5 @@
 import 'package:adminapp/components/Button/Toggle_button.dart';
+import 'package:adminapp/components/Gtext.dart';
 import 'package:adminapp/pages/Farmer.dart';
 import 'package:adminapp/pages/Fertilizer.dart';
 import 'package:adminapp/pages/Home.dart';
@@ -17,16 +18,13 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   final List<Widget> _pages = [
-    
-   Fertilizer(),
     FarmerPage(),
     Home(),
-    
+    Fertilizer(),
     TransportPage(),
     vegeCollection(),
     Vegesatatus(),
     FertilizerOutlet(),
-    
   ];
 
   bool isExpanded = true;
@@ -46,24 +44,47 @@ class _NavBarState extends State<NavBar> {
             unselectedLabelTextStyle: const TextStyle(color: Colors.black),
             destinations: const [
               NavigationRailDestination(
-                icon: Icon(Icons.home),
-                label: Text('Farmer'),
-              ),
+                  icon: Icon(Icons.home),
+                  label: Text(
+                    "Home",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                  )),
               NavigationRailDestination(
-                  icon: Icon(Icons.person), label: Text('Blog')),
+                  icon: Icon(Icons.person),
+                  label: Text(
+                    'Blog',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  )),
               NavigationRailDestination(
-                  icon: Icon(Icons.shopping_basket), label: Text('Fertilizer')),
+                  icon: Icon(Icons.shopping_basket),
+                  label: Text(
+                    'Fertilizer',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  )),
               NavigationRailDestination(
-                  icon: Icon(Icons.train), label: Text('Transpotation')),
+                  icon: Icon(Icons.train),
+                  label: Text(
+                    'Transpotation',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  )),
               NavigationRailDestination(
                   icon: Icon(Icons.collections),
-                  label: Text('Vege Collections')),
+                  label: Text(
+                    'Vege Collections',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  )),
               NavigationRailDestination(
                   icon: Icon(Icons.stacked_bar_chart),
-                  label: Text('Vege Status')),
-                   NavigationRailDestination(
+                  label: Text(
+                    'Vege Status',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  )),
+              NavigationRailDestination(
                   icon: Icon(Icons.shop_2_outlined),
-                  label: Text('fertilizer Outlet'))
+                  label: Text(
+                    'fertilizer Outlet',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  ))
             ],
             leading: ToggleIconButton(
               initialIcon: Icons.arrow_forward_ios,

@@ -83,7 +83,7 @@ class _PredictionFormState extends State<PredictionForm> {
     double height = MediaQuery.of(context).size.height;
     return Container(
       width: width * 1 / 3,
-      height: height * 1 / 2,
+      height: height * 1 ,
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Form(

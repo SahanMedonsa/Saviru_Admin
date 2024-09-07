@@ -286,7 +286,7 @@ class _TransportPageState extends State<TransportPage> {
                             height: 10,
                           ),
                           Container(
-                              height: height * 1 / 2, child: RestockContainer())
+                              height: height * 1 , child: RestockContainer())
                         ],
                       ),
                     ),

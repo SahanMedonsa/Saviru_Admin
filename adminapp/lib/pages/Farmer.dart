@@ -467,16 +467,16 @@ class _FarmerPageState extends State<FarmerPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Gtextn(text: "Percentage of Vegetable Grow "),
-                            SizedBox(height: 30),
+                            SizedBox(height: 10),
                             PieChart(
                               dataMap: datamap,
-                              chartRadius: width * 1 / 6,
+                              chartRadius: width * 1 / 8,
                               chartValuesOptions: ChartValuesOptions(
                                 showChartValuesInPercentage: true,
                                 showChartValues: true,
                               ),
                             ),
-                            SizedBox(height: 30),
+                            SizedBox(height: 10),
                             Gtextn(
                                 text: "Farmer Price Calculations ( 01 acres) "),
                             PredictionForm(),
