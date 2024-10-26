@@ -1,3 +1,4 @@
+import 'package:adminapp/ML/vegetableprdict.dart';
 import 'package:adminapp/components/Colorpallet.dart';
 import 'package:adminapp/components/Drawer.dart';
 import 'package:adminapp/components/Gtext.dart';
@@ -47,7 +48,19 @@ class _FertilizerState extends State<Fertilizer> {
                         SizedBox(
                           height: 10,
                         ),
-                        chooseBestfertilzer()
+                        chooseBestfertilzer(),
+
+                        Gtext(
+                            text: 'Choose best vegetable ',
+                            size: 25,
+                            color: Colors.black,
+                            fweight: FontWeight.w600),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        
+                       VegetablePredictionScreen()
+
                       ],
                     ),
                   ),

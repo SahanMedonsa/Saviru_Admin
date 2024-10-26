@@ -478,7 +478,7 @@ class _FarmerPageState extends State<FarmerPage> {
                             ),
                             SizedBox(height: 10),
                             Gtextn(
-                                text: "Farmer Price Calculations ( 01 acres) "),
+                                text: "Carrot Price Calculations ( 01 acres) "),
                             PredictionForm(),
                             // You might want to include additional spacing below the PredictionForm
                             SizedBox(height: 20),
