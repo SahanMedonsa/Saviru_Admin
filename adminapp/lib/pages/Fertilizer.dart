@@ -37,18 +37,7 @@ class _FertilizerState extends State<Fertilizer> {
                     height: height ,
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Gtext(
-                            text: 'Choose Best Fertilizer ',
-                            size: 25,
-                            color: Colors.black,
-                            fweight: FontWeight.w600),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        chooseBestfertilzer(),
+                       
 
                         Gtext(
                             text: 'Choose best vegetable ',
