@@ -1,3 +1,4 @@
+import 'package:adminapp/IOT/home_page.dart';
 import 'package:adminapp/ML/vegetableprdict.dart';
 import 'package:adminapp/components/Colorpallet.dart';
 import 'package:adminapp/components/Drawer.dart';
@@ -54,6 +55,37 @@ class _FertilizerState extends State<Fertilizer> {
                     ),
                   ),
                 ],
+              ),
+            ),
+          ),
+
+          Expanded(
+            flex: 4,
+            child: Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Container(
+                      height: height ,
+                      child: Column(
+                        children: [
+                          Gtext(
+                              text: 'Choose best vegetable ',
+                              size: 25,
+                              color: Colors.black,
+                              fweight: FontWeight.w600),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          
+                         HomePage()
+                
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
