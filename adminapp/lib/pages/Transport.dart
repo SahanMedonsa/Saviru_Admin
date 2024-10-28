@@ -2,6 +2,7 @@ import 'package:adminapp/Transpotation/RestockContainer.dart';
 import 'package:adminapp/components/Colorpallet.dart';
 import 'package:adminapp/components/Gtext.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TransportPage extends StatefulWidget {
   const TransportPage({super.key});
@@ -9,6 +10,17 @@ class TransportPage extends StatefulWidget {
   @override
   State<TransportPage> createState() => _TransportPageState();
 }
+
+  final String url = "https://drive.google.com/file/d/1Jj_0ir4fHmlZL77vZkQLnwy_zlfA-tLt/view?usp=sharing";
+
+  Future<void> _launchURL() async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 
 class _TransportPageState extends State<TransportPage> {
   List<Map<String, dynamic>> vegetables = [
@@ -38,10 +50,29 @@ class _TransportPageState extends State<TransportPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      'Transport Cost calculation',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Transport Cost calculation',
+                          style:
+                              TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+
+                          MaterialButton(
+                    onPressed:_launchURL, // Open URL on button click
+                    child: Container(
+                      width: 100,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: ColorPalette.button_color,
+                      ),
+                      child: Center(
+                        child: Text("Document", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                    
+                  )
+                    ))],
                     ),
                     SizedBox(height: 20),
                     Text(

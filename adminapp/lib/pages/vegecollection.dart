@@ -1,6 +1,7 @@
 import 'package:adminapp/components/Colorpallet.dart';
 import 'package:adminapp/components/Gtext.dart';
 import 'package:adminapp/pages/dailycollectotal.dart';
+import 'package:adminapp/pages/inquiryscreen.dart';
 import 'package:flutter/material.dart';
 
 class vegeCollection extends StatefulWidget {
@@ -39,40 +40,8 @@ class _vegeCollectionState extends State<vegeCollection> {
               )),
           Expanded(
               flex: 6,
-              child: Column(
-                children: [
-                  Container(
-                    height: height * 1 / 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          Gtext(
-                              text: 'Farmer Daily collections.',
-                              size: 25,
-                              color: Colors.black,
-                              fweight: FontWeight.w600),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: height * 1 / 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          Gtext(
-                              text: 'Farmer Inquiry Details..',
-                              size: 25,
-                              color: Colors.black,
-                              fweight: FontWeight.w600),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              )),
+              child:InquiryScreen()
+              ),
         ],
       ),
     );

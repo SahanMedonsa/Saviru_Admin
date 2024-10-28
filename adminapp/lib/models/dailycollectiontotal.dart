@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 Future<Map<String, Map<String, int>>> getVegetableTotalsByDate() async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -27,5 +28,15 @@ Future<Map<String, Map<String, int>>> getVegetableTotalsByDate() async {
     }
   }
 
-  return totalsByDate;
+  // Sorting by date in descending order
+  var sortedTotalsByDate = Map<String, Map<String, int>>.fromEntries(
+    totalsByDate.entries.toList()
+      ..sort((a, b) {
+        DateTime dateA = DateFormat('yyyy-MM-dd').parse(a.key);
+        DateTime dateB = DateFormat('yyyy-MM-dd').parse(b.key);
+        return dateB.compareTo(dateA); 
+      }),
+  );
+
+  return sortedTotalsByDate;
 }

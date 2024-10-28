@@ -27,8 +27,11 @@ class _VegetableTotalsScreenState extends State<VegetableTotalsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorPalette.Emerald_Green.withOpacity(0.2),
       appBar: AppBar(
-        title: Text('Daily Collection'),
+        title: Text('Daily Collection', style:  TextStyle(
+          fontWeight: FontWeight.bold
+        ),),
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
